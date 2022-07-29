@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+	<head>
+
+		<title>Concurrency Models</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="./reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="./reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="./reveal.js/dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="./reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section>
+						<h2>Concurrency models</h2>
+						<p>
+						The evolution about concurrency model in different programming languages
+						</p>
+						<small>
+							<table>
+								<tr>
+									<th>Lang</th>
+									<th>Shared memory</th>
+									<th>CSP</th>
+									<th>Actors</th>
+									<th>Async Await</th>
+									<th>Mono thread</th>
+									<th>Multi threads</th>
+									<th>Multi core</th>
+									<th>OS Threads</th>
+									<th>Green Threads</th>
+								</tr>
+								<tr>
+									<td><a href="https://www.java.com/" target="_blank">Java</a></td>
+									<td><a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<!--
+                                https://superfastpython.com/multiprocessing-in-python/
+                                -->
+								<tr>
+									<td><a href="https://www.python.org/" target="_blank">Python</a></td>
+									<td><a href="https://docs.python.org/3/library/multiprocessing.shared_memory.html" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td><a href="https://docs.python.org/3/library/asyncio.html" target="_blank">Yes</a></td>
+									<td><a href="https://docs.python.org/3/c-api/init.html#thread-state-and-the-global-interpreter-lock" target="_blank">Yes</a></td>
+									<td><a href="https://docs.python.org/3/library/threading.html" target="_blank">Yes*</a></td>
+									<td><a href="https://docs.python.org/3/library/multiprocessing.html" target="_blank">Yes*</a></td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td><a href="https://nodejs.org" target="_blank">Node.js</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank">Yes</a></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td><a href="https://nodejs.org/api/cluster.html" target="_blank">Yes*</a></td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td><a href="https://www.php.net/" target="_blank">PHP</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td><a href="https://wiki.php.net/rfc/fibers" target="_blank">Yes*</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://elixir-lang.org/" target="_blank">Elixir</a></td>
+									<td>No</td>
+									<td><a href="https://elixir-lang.org/getting-started/processes.html" target="_blank">Yes</a></td>
+									<td>Yes</td>
+									<td><a href="https://hexdocs.pm/elixir/1.13/Task.html" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<!--
+                                https://medium.com/@aversanamichele/exploiting-multiple-cores-using-concurrency-and-task-groups-in-swift-adfbc5b7fbcf
+                                -->
+								<tr>
+									<td><a href="https://www.swift.org/" target="_blank">Swift</a></td>
+									<td>No</td>
+									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
+									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
+									<td><a href="https://www.swift.org/blog/distributed-actors/" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td><a href="https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html" target="_blank">Yes</a></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td><a href="https://dart.dev/" target="_blank">Dart</a></td>
+									<td>No</td>
+									<td><a href="https://dart.dev/guides/language/concurrency" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td><a href="https://dart.dev/codelabs/async-await" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td><a href="https://go.dev/" target="_blank">Go</a></td>
+									<td>No</td>
+									<td><a href="https://go.dev/tour/concurrency/2" target="_blank">Yes</a></td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td><a href="https://www.rust-lang.org/" target="_blank">Rust</a></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+							</table>
+						</small>
+					</section>
+					<!--
+					https://www.baeldung.com/java-thread-lifecycle
+					https://dzone.com/articles/java-concurrency-evolution
+					-->
+					<section>
+						<h2>Concurrency models</h2>
+						<p>
+							The evolution about concurrency model in Java
+						</p>
+						<small>
+							<table>
+								<tr>
+									<th>Java version</th>
+									<th>Key features</th>
+									<th>Release data</th>
+								</tr>
+								<tr>
+									<td>Java 1.0</td>
+									<td>Java OS Threads</td>
+									<td>23/01/1996</td>
+								</tr>
+								<tr>
+									<td>Java 1.5</td>
+									<td>JSR 133, java.util.concurrent.*</td>
+									<td>30/09/2004</td>
+								</tr>
+								<tr>
+									<td>Java 1.7</td>
+									<td>Fork/join framework</td>
+									<td>07/07/2011</td>
+								</tr>
+								<tr>
+									<td>Java 1.8</td>
+									<td>CompletableFuture</td>
+									<td>18/03/2014</td>
+								</tr>
+								<tr>
+									<td>Java 19</td>
+									<td>Virtual Threads, Structured Concurrency</td>
+									<td>20/09/2022</td>
+								</tr>
+							</table>
+						</small>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="./reveal.js/dist/reveal.js"></script>
+		<script src="./reveal.js/plugin/notes/notes.js"></script>
+		<script src="./reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="./reveal.js/plugin/highlight/highlight.js"></script>
+
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
